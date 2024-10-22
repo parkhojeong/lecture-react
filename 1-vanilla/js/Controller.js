@@ -17,9 +17,10 @@ export default class Controller {
   subscribeViewEvents() {
     this.searchFormView
       .on("@submit", (event) => this.search(event.detail.value))
-      .on("@reset", () => this.reset());
+      .on("@reset", () => this.reset())
 
-    // TODO
+    this.tabView.on("@change", (event) => this.changeTab(event.detail.value));
+
   }
 
   search(keyword) {
@@ -49,5 +50,11 @@ export default class Controller {
   renderSearchResult() {
     this.tabView.hide();
     this.searchResultView.show(this.store.searchResult);
+  }
+
+  changeTab(value) {
+    console.log(tag, 'changeTab', value)
+    this.store.selectedTab = value;
+    this.render();
   }
 }
