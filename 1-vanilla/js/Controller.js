@@ -27,7 +27,8 @@ export default class Controller {
 
   reset() {
     console.log(tag, "reset");
-    // TODO
+    this.store.searchReset();
+    this.render();
   }
 
   render() {
