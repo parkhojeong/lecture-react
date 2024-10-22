@@ -15,10 +15,17 @@ export default class Controller {
     this.searchFormView.on("@submit", (event) =>
       this.search(event.detail.value)
     );
-    // TODO
+    this.searchFormView.on("@reset", () =>
+      this.delete()
+    );
+
   }
 
   search(searchKeyword) {
     console.log(tag, "search", searchKeyword);
+  }
+
+  delete() {
+    console.log(tag, "delete");
   }
 }
