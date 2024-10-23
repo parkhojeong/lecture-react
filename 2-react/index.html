@@ -22,7 +22,12 @@
 
     <script type="text/babel">
       const element = React.createElement("h1", null, "Hello world");
+      console.log('react', element);
       ReactDOM.render(element, document.querySelector("#app"));
+
+      const p = document.createElement('p')
+      p.textContent = "hello world";
+      console.log('dom', p);
     </script>
   </body>
 </html>
