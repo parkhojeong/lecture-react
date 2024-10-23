@@ -14,11 +14,22 @@ class App extends React.Component {
 
   handleReset() {
     console.log("handleReset");
-    this.setState({searchKeyword: ""})
+    this.setState(
+      () => {
+        return {searchKeyword: ""}
+      },
+      () => {
+        console.log("TODO: handleReset", this.state.searchKeyword)
+      })
   }
 
   handleChangeInput(event) {
     const searchKeyword = event.target.value;
+    if(searchKeyword.length === 0){
+      this.handleReset();
+      return;
+    }
+
     this.setState({ searchKeyword });
   }
 
