@@ -1,5 +1,5 @@
 import { TabType } from "./views/TabView.js";
-import {createPastDate} from "./helpers.js";
+import {createNextId, createPastDate} from "./helpers.js";
 
 const tag = "[Store]";
 
@@ -33,7 +33,7 @@ export default class Store {
   }
 
   _sortHistory(history1, history2) {
-    return history2.date > history1.date;
+    return history2.date - history1.date;
   }
 
   removeHistory(keyword) {
@@ -45,11 +45,12 @@ export default class Store {
   addHistory(keyword){
     this.removeHistory(keyword);
     this.storage.historyData = [
-      ...this.storage.historyData,
       {
-        id: this.storage.historyData.length + 1,
+        id: createNextId(this.storage.historyData),
         keyword,
-        date: createPastDate(),
-      }]
+        date: new Date(),
+      },
+      ...this.storage.historyData,
+      ]
   }
 }
