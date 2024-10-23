@@ -9,11 +9,27 @@
 </head>
 <body>
     <script>
-        let data = "hello world"; // model
-        document.body.innerHTML = `<p>${data}</p>`;
+        const state = {
+          _data: "hello world",
+        };
+        const render = () => {
+          document.body.innerHTML = `<p>${state.data}</p>`;
+        }
 
-        data = "hello2";
-        document.body.innerHTML = `<p>${data}</p>`;
+        Object.defineProperty(state, "data", {
+          get() {
+            console.log("get");
+            return state._data;
+          },
+          set(value) {
+            console.log("set");
+            state._data = value;
+            render();
+          }
+        });
+
+        render();
+        state.data = "hello2";
     </script>
 </body>
 </html>
