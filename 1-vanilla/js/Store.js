@@ -1,4 +1,5 @@
 import { TabType } from "./views/TabView.js";
+import {createPastDate} from "./helpers.js";
 
 const tag = "[Store]";
 
@@ -20,7 +21,7 @@ export default class Store {
     this.searchResult = this.storage.productData.filter((product) =>
       product.name.includes(keyword)
     );
-    // TODO
+    this.addHistory(keyword);
   }
 
   getKeywordList() {
@@ -41,5 +42,14 @@ export default class Store {
     );
   }
 
-  // TODO
+  addHistory(keyword){
+    this.removeHistory(keyword);
+    this.storage.historyData = [
+      ...this.storage.historyData,
+      {
+        id: this.storage.historyData.length + 1,
+        keyword,
+        date: createPastDate(),
+      }]
+  }
 }
